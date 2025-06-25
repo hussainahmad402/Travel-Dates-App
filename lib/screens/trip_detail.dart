@@ -28,8 +28,6 @@ class TripDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
-
                   // Main image
                   Row(
                     children: [
@@ -53,22 +51,22 @@ class TripDetailScreen extends StatelessWidget {
                         children: [
                           Image.asset(
                             'assets/document_navbar/1.png',
-                            width: size.width* 0.17,
-                            height: size.width *0.17,
+                            width: size.width * 0.17,
+                            height: size.width * 0.17,
                             fit: BoxFit.cover,
                           ),
                           const SizedBox(height: 8),
                           Image.asset(
                             'assets/document_navbar/2.png',
-                             width: size.width* 0.17,
-                            height: size.width *0.17,
+                            width: size.width * 0.17,
+                            height: size.width * 0.17,
                             fit: BoxFit.cover,
                           ),
                           const SizedBox(height: 8),
                           Image.asset(
                             'assets/document_navbar/3.png',
-                            width: size.width* 0.17,
-                            height: size.width *0.17,
+                            width: size.width * 0.17,
+                            height: size.width * 0.17,
                             fit: BoxFit.cover,
                           ),
                         ],
@@ -111,7 +109,9 @@ class TripDetailScreen extends StatelessWidget {
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFB79D6C),
                             borderRadius: BorderRadius.circular(30),
@@ -124,7 +124,9 @@ class TripDetailScreen extends StatelessWidget {
                         const SizedBox(width: 12),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10 ,horizontal: 20),
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFF23284E),
                             borderRadius: BorderRadius.circular(30),
@@ -142,15 +144,18 @@ class TripDetailScreen extends StatelessWidget {
 
                   // Description
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.05,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
+                      children: [
                         Text(
                           'Description:',
                           style: TextStyle(
-                              fontSize: size.width * 0.07 , fontWeight: FontWeight.bold),
+                            fontSize: size.width * 0.07,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 8),
                         Text(
@@ -171,10 +176,12 @@ class TripDetailScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
+                        Text(
                           'Documents:',
                           style: TextStyle(
-                              fontSize: size.width * 0.07, fontWeight: FontWeight.bold),
+                            fontSize: size.width * 0.07,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 12),
                         Row(
