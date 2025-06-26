@@ -28,15 +28,13 @@ class TravelDocumentScreen extends StatelessWidget {
               backgroundImage: AssetImage(imgPath),
             ),
           ),
-          SizedBox(height: 4),
+          SizedBox(height:  size.width * 0.024),
           Icon(Icons.remove_red_eye, size: iconRadius * 0.4, color: Colors.black54),
         ],
       );
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Row(
+    return Row(
         children: [
           // Vertical bar
           Container(
@@ -163,7 +161,6 @@ class TravelDocumentScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }

@@ -69,45 +69,45 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 child: Stack(
                   children: [
                     // Main content: ALERTS and notifications
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: size.height * 0.05),
-                        // ALERTS title with vector plane overlay
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: size.height * 0.01, left: size.width * 0.03),
-                              child: Text(
+                    Padding(
+                      padding:   EdgeInsets.only(left: size.width*0.07),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: size.height * 0.05),
+                          // ALERTS title with vector plane overlay
+                          Stack(
+                            children: [
+                              Text(
                                 "ALERTS",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w400,
-                                  fontSize: size.width * 0.23,
+                                  fontSize: 65,
                                   color: const Color(0xFFAF9A73),
                                   height: 1,
                                   letterSpacing: 2,
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              top: size.height * 0.04,
-                              left: size.width * 0.18,
-                              right: size.width * 0.18,
-                              child: Image.asset(
-                                'assets/splash_screen/Vector_plane.png',
+                              Positioned(
+                                top: size.height * 0.04,
+                                left: size.width * 0.18,
+                                right: size.width * 0.18,
+                                child: Image.asset(
+                                  'assets/splash_screen/Vector_plane.png',
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: size.height * 0.03),
-                        // Notification cards (use the custom widget)
-                        const CustomNotificationCard(time: "12:56 am"),
-                        const CustomNotificationCard(time: "12:56 am"),
-                        const CustomNotificationCard(time: "12:56 am"),
-                        const CustomNotificationCard(time: "12:56 am"),
-                      ],
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.03),
+                          // Notification cards (use the custom widget)
+                          const CustomNotificationCard(time: "12:56 am"),
+                          const CustomNotificationCard(time: "12:56 am"),
+                          const CustomNotificationCard(time: "12:56 am"),
+                          const CustomNotificationCard(time: "12:56 am"),
+                        ],
+                      ),
                     ),
                     // Menu icon and filter popup (absolute position)
                     Positioned(
@@ -147,16 +147,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Text(
+                                       Text(
                                         "Show the Following",
                                         style: TextStyle(
                                           fontFamily: "Poppins",
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 20,
+                                          fontSize:  size.width * 0.04,
                                           color: Colors.black,
                                         ),
                                       ),
-                                      SizedBox(height: 10),
+                                      SizedBox(height: size.height * 0.01),
                                       CustomSwitchTile(
                                         title: "Upcoming trip",
                                         value: upcomingTrip,

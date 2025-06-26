@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:traveldates/screens/main_screen.dart';
+import 'package:traveldates/screens/notification_screen.dart';
+import 'package:traveldates/screens/profile_screen.dart';
+import 'package:traveldates/screens/settings_screen.dart';
+import 'package:traveldates/screens/trip_detail.dart';
 
 class SignInOtpScreen extends StatelessWidget {
   const SignInOtpScreen({super.key});
@@ -90,22 +94,36 @@ class SignInOtpScreen extends StatelessWidget {
                           const SizedBox(width: 5),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainScreen(),
+                                ),
+                              );
                             },
                             style: TextButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 14),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: size.width * 0.002,
+                                vertical: size.height * 0.01,
+                              ),
                               // backgroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                             child: InkWell(
-                          onTap: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MainScreen()));
-                          },
-                          child: Image.asset('assets/splash_screen/plane.png'),
-                        )
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MainScreen(),
+                                  ),
+                                );
+                              },
+                              child: Image.asset(
+                                'assets/splash_screen/plane.png',
+                              ),
+                            ),
                           ),
                         ],
                       ),

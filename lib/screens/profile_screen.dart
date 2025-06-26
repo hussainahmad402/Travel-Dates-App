@@ -10,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Row(
         children: [
@@ -75,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                         color: Color(0xFF23284E),
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    SizedBox( height: size.width * 0.019),
                     const Text(
                       "John Smith",
                       style: TextStyle(
@@ -95,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                         color: Color(0xFF23284E),
                       ),
                     ),
-                    const SizedBox(height: 2),
+                     SizedBox(height:  size.width * 0.024),
                     const Text(
                       "Los Angeles, California",
                       style: TextStyle(
@@ -115,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                         color: Color(0xFF23284E),
                       ),
                     ),
-                    const SizedBox(height: 2),
+                     SizedBox(height:  size.width * 0.024),
                     const Text(
                       "abcd1234@gmail.com",
                       style: TextStyle(

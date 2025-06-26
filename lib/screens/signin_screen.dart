@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                     left: size.width * 0.16,
                   ),
                   child: SizedBox(
-                    height: 48,
+                     height: size.height * 0.05,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -55,7 +55,7 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         elevation: 0,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding:  EdgeInsets.symmetric(horizontal:  size.width * 0.024),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -65,7 +65,7 @@ class SignInScreen extends StatelessWidget {
                             height: 24,
                             width: 24,
                           ),
-                          const SizedBox(width: 16),
+                           SizedBox(width: size.width * 0.024 ),
                           const Text(
                             'Continue with Google',
                             style: TextStyle(color: Colors.white, fontSize: 16),
@@ -99,7 +99,7 @@ class SignInScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(
-                        height: 48,
+                         height: size.height * 0.05,
                         width: size.width * 0.55,
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
@@ -115,19 +115,16 @@ class SignInScreen extends StatelessWidget {
                             ),
                             fillColor: Colors.white,
                             filled: true,
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), // Reduce padding
+                            // isDense: true,
+                            // contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), // Reduce padding
                           ),
                         ),
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInOtpScreen()));
-                          },
-                          child: Image.asset('assets/splash_screen/plane.png'),
-                        )
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInOtpScreen()));
+                        },
+                        child: Image.asset('assets/splash_screen/plane.png'),
                       ),
                     ],
                   ),

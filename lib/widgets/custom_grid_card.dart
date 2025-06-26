@@ -26,7 +26,7 @@ class TripGridCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.13),
+            color: Colors.black.withAlpha(80),
             blurRadius: 10,
             offset: const Offset(0, 6),
           ),
@@ -43,91 +43,79 @@ class TripGridCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Container(
+              
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withOpacity(0.55),
-                    Colors.black.withOpacity(0.15),
+                    Colors.black.withAlpha(230),
+                    Colors.black.withAlpha(50),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(size.width * 0.025),
+              padding: EdgeInsets.symmetric(horizontal:size.width * 0.01,vertical: size.width * 0.04),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+                // crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
                 children: [
                   // Top badges
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center, // Center badges horizontally
                     children: [
                       if (badge1.isNotEmpty)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.002),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withAlpha(200),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             badge1,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Color(0xFF23284E),
                               fontWeight: FontWeight.w600,
-                              fontSize: 10,
+                              fontSize: size.width * 0.02,
                             ),
                           ),
                         ),
-                      if (badge2.isNotEmpty) ...[
-                        const SizedBox(width: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFAF9A73),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            badge2,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ],
                     ],
                   ),
-                  const Spacer(),
+                   SizedBox(height: size.height * 0.01),
                   Text(
                     title,
-                    style: const TextStyle(
+                    textAlign: TextAlign.center,
+                    style:  TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w600,
-                      fontSize: 13,
+                      fontSize: size.width * 0.03,
                       color: Colors.white,
                     ),
                   ),
                   SizedBox(height: 2),
                   Text(
                     date,
-                    style: const TextStyle(
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w700,
-                      fontSize: 10,
+                      fontSize: size.width * 0.015,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 2),
+                  SizedBox(height: size.width * 0.01),
                   Text(
                     desc,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
-                      fontSize: 9,
+                      fontSize: size.width * 0.02,
                       color: Colors.white,
                     ),
                   ),

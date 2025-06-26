@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:traveldates/screens/main_screen.dart';
 import 'package:traveldates/screens/profile_screen.dart';
 import 'package:traveldates/widgets/custom_textfields.dart';
 
@@ -63,20 +62,21 @@ class PersonalEditScreen extends StatelessWidget {
                     CustomTextFormField(label: "add secondary email: (optional)"),
                     SizedBox(height: size.height * 0.015),
                     CustomTextFormField(label: "company name:"),
-                    const Spacer(),
+                    SizedBox(height: size.height* 0.04),
                     // Save button
                     Align(
                       alignment: Alignment.bottomRight,
+                      
                       child: ElevatedButton(
                         onPressed: () {
-                          // Save logic here
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFAF9A73),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
+                          padding:EdgeInsets.symmetric(horizontal: size.width* 0.06, vertical: size.height*0.01),
                           elevation: 0,
                         ),
                         child: const Text(

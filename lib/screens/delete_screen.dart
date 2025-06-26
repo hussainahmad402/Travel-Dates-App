@@ -17,6 +17,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Row(
         children: [
@@ -48,22 +49,22 @@ class _DeleteScreenState extends State<DeleteScreen> {
 
                     SizedBox(height: size.height * 0.04),
                     // Title
-                    const Text(
+                    Text(
                       "Delete Account",
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
-                        fontSize: 30,
+                        fontSize: size.width * 0.07,
                         color: Colors.black,
                       ),
                     ),
                     SizedBox(height: size.height * 0.025),
                     // Subtitle
-                    const Text(
+                    Text(
                       "Please Enter the Code recieved in your email",
                       style: TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 15,
+                        fontSize: size.width * 0.03,
                         color: Colors.black87,
                       ),
                     ),
@@ -101,7 +102,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    SizedBox(height: size.width * 0.024),
                     // Resend
                     Row(
                       children: [
@@ -113,7 +114,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
                             color: Colors.black54,
                           ),
                         ),
-                        const SizedBox(width: 6),
+                        SizedBox(width: size.width * 0.024),
                         GestureDetector(
                           onTap: () {
                             // Handle resend

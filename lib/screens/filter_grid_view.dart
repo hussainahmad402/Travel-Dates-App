@@ -51,9 +51,9 @@ class FilterGridView extends StatelessWidget {
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: size.width * 0.03,
+            crossAxisSpacing: size.width * 0.02,
             mainAxisSpacing: size.height * 0.025,
-            childAspectRatio: 0.85,
+            childAspectRatio: 1.1,
           ),
           itemCount: 9, // Example: 9 cards
           itemBuilder: (context, index) {
