@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traveldates/widgets/bottom_navigation.dart';
 
 class TripDetailScreen extends StatelessWidget {
   const TripDetailScreen({super.key});
@@ -39,12 +40,12 @@ class TripDetailScreen extends StatelessWidget {
                         child: Image.asset(
                           'assets/document_navbar/left image.png', // Dummy path
                           width: size.width * 0.68,
-                          height: size.height * 0.25,
+                          height: size.height * 0.27,
                           fit: BoxFit.cover,
                         ),
                       ),
 
-                      const SizedBox(width: 16),
+                       SizedBox(width: size.width * 0.026),
 
                       // Small right-side images
                       Column(
@@ -55,14 +56,14 @@ class TripDetailScreen extends StatelessWidget {
                             height: size.width * 0.17,
                             fit: BoxFit.cover,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height:  size.height * 0.0099),
                           Image.asset(
                             'assets/document_navbar/2.png',
                             width: size.width * 0.17,
                             height: size.width * 0.17,
                             fit: BoxFit.cover,
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height:  size.height * 0.0099),
                           Image.asset(
                             'assets/document_navbar/3.png',
                             width: size.width * 0.17,
@@ -74,20 +75,20 @@ class TripDetailScreen extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(height: 16),
+                   SizedBox(height:  size.height * 0.01),
 
                   // Trip Title
                   Center(
                     child: Text(
                       "Trip to Paris",
                       style: TextStyle(
-                        fontSize: size.width * 0.08,
+                        fontSize: 23,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 6),
+                   SizedBox(height:  size.height * 0.0099),
 
                   // Trip Dates
                   Center(
@@ -95,7 +96,7 @@ class TripDetailScreen extends StatelessWidget {
                       "FRI, 03 Dec 2021 - TUE, 04 DEC 2021",
                       style: TextStyle(
                         color: Colors.grey[600],
-                        fontSize: size.width * 0.04,
+                        fontSize:13,
                       ),
                     ),
                   ),
@@ -121,7 +122,7 @@ class TripDetailScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        SizedBox(width: size.width * 0.026),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             vertical: 10,
@@ -140,7 +141,7 @@ class TripDetailScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: size.height * 0.029),
 
                   // Description
                   Padding(
@@ -153,22 +154,22 @@ class TripDetailScreen extends StatelessWidget {
                         Text(
                           'Description:',
                           style: TextStyle(
-                            fontSize: size.width * 0.07,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: size.height * 0.0099),
                         Text(
                           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
                           "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
                           "when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                          style: TextStyle(fontSize: size.width * 0.05),
+                          style: TextStyle(fontSize: 11),
                         ),
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: size.height * 0.029),
 
                   // Documents
                   Padding(
@@ -179,11 +180,11 @@ class TripDetailScreen extends StatelessWidget {
                         Text(
                           'Documents:',
                           style: TextStyle(
-                            fontSize: size.width * 0.07,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 12),
+                         SizedBox(height: size.width * 0.026),
                         Row(
                           children: [
                             Image.asset(
@@ -191,7 +192,7 @@ class TripDetailScreen extends StatelessWidget {
                               width: size.width * 0.2,
                               height: size.width * 0.2,
                             ),
-                            const SizedBox(width: 10),
+                             SizedBox(width: size.width * 0.026),
                             Image.asset(
                               'assets/document_navbar/document.png',
                               width: size.width * 0.2,
@@ -203,12 +204,20 @@ class TripDetailScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 40),
+                  SizedBox(height: size.height * 0.049),
                 ],
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 2, // highlight the Trips tab
+        onTap: (index) {
+          Navigator.of(context).pop(); // or use your navigation logic
+        },
+        // showListView: false,
+        // showGridView: false,
       ),
     );
   }

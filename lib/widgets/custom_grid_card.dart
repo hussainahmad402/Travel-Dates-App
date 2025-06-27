@@ -7,6 +7,7 @@ class TripGridCard extends StatelessWidget {
   final String desc;
   final String badge1;
   final String badge2;
+  final String status;
 
   const TripGridCard({
     super.key,
@@ -16,12 +17,15 @@ class TripGridCard extends StatelessWidget {
     required this.desc,
     required this.badge1,
     required this.badge2,
+    this.status="",
   });
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      height: size.height * 0.14, // ≈ 61 pixels
+      width: size.width * 0.33,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
         boxShadow: [
@@ -40,12 +44,11 @@ class TripGridCard extends StatelessWidget {
               imagePath,
               width: double.infinity,
               height: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
             Container(
-              
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -57,41 +60,77 @@ class TripGridCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal:size.width * 0.01,vertical: size.width * 0.04),
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.01,
+                vertical: size.width * 0.04,
+              ),
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.center, // Center vertically
                 // crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
                 children: [
                   // Top badges
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center, // Center badges horizontally
+                    mainAxisAlignment: MainAxisAlignment
+                        .spaceEvenly, // Center badges horizontally
                     children: [
                       if (badge1.isNotEmpty)
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.002),
+                          width: size.width * 0.118, // ≈ 45 pixels
+                          height: size.height * 0.015, // ≈ 9 pixels
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.02,
+                            vertical: size.height * 0.002,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withAlpha(200),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             badge1,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF23284E),
                               fontWeight: FontWeight.w600,
-                              fontSize: size.width * 0.02,
+                              fontSize: 6,
+                            ),
+                          ),
+                        ),
+                      if (badge2.isNotEmpty)
+                        SizedBox(
+                          width: size.width * 0.01,
+                        ), // Space between badges
+                      if (badge2.isNotEmpty)
+                        Container(
+                          width: size.width * 0.118,
+                          height: size.height * 0.015,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.02,
+                            vertical: size.height * 0.002,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Color(0xffAF9A73),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            badge2,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF23284E),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 6,
                             ),
                           ),
                         ),
                     ],
                   ),
-                   SizedBox(height: size.height * 0.01),
+                  SizedBox(height: size.height * 0.01),
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style:  TextStyle(
+                    style: TextStyle(
                       fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600,
-                      fontSize: size.width * 0.03,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 7,
                       color: Colors.white,
                     ),
                   ),
@@ -102,7 +141,7 @@ class TripGridCard extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w700,
-                      fontSize: size.width * 0.015,
+                      fontSize: 6,
                       color: Colors.white,
                     ),
                   ),
@@ -115,7 +154,7 @@ class TripGridCard extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
-                      fontSize: size.width * 0.02,
+                      fontSize: 6,
                       color: Colors.white,
                     ),
                   ),

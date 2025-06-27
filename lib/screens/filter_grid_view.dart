@@ -11,7 +11,7 @@ class FilterGridView extends StatelessWidget {
 
     final trips = [
       {
-        "image": "assets/filter_images/list_filter_1.png",
+        "image": "assets/document_navbar/1.png",
         "title": "Los Angeles to Paris",
         "date": "MON, 01 NOV 2021 – SAT, 27 NOV 2021",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
@@ -20,22 +20,31 @@ class FilterGridView extends StatelessWidget {
         "badge2": "In 5 Days",
       },
       {
-        "image": "assets/filter_images/list_filter_2.png",
+        "image": "assets/document_navbar/2.png",
         "title": "Los Angeles to Paris",
         "date": "FRI, 03 DEC 2021 – TUE, 04 DEC 2021",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
         "status": "lasted 27 Days",
         "badge1": "17 days Trip",
-        "badge2": "In 5 Days",
+        
       },
       {
-        "image": "assets/filter_images/list_filter_3.png",
+        "image": "assets/document_navbar/3.png",
         "title": "Los Angeles to Paris",
         "date": "MON, 01 NOV 2021 – SAT, 27 NOV 2021",
         "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
         "status": "lasted 27 Days",
         "badge1": "lasted 27 Days",
-        "badge2": "",
+        "badge2": "In 5 Days"
+      },
+      {
+        "image": "assets/document_navbar/2.png",
+        "title": "Los Angeles to Paris",
+        "date": "MON, 01 NOV 2021 – SAT, 27 NOV 2021",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "status": "lasted 27 Days",
+        "badge1": "lasted 27 Days",
+        // "badge2": "In 5 Days"
       },
       // Add more trip maps as needed
     ];
@@ -51,9 +60,9 @@ class FilterGridView extends StatelessWidget {
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: size.width * 0.02,
-            mainAxisSpacing: size.height * 0.025,
-            childAspectRatio: 1.1,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            childAspectRatio: 1, // Adjust this for height/width ratio
           ),
           itemCount: 9, // Example: 9 cards
           itemBuilder: (context, index) {

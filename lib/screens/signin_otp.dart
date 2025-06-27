@@ -49,19 +49,23 @@ class SignInOtpScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: EdgeInsets.only(
-                    top: size.height * 0.63,
-                    left: size.width * 0.10,
-                    right: size.width * 0.10,
+                    top: size.height * 0.64,
+                    left: size.width * 0.039,
+                    right: size.width * 0.1 
+                    // right: size.width * 0.10,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         "Please enter the code received in your email",
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      const SizedBox(height: 16),
+                      // const SizedBox(height: 16),
                       Row(
                         children: [
                           Expanded(
@@ -69,20 +73,21 @@ class SignInOtpScreen extends StatelessWidget {
                               appContext: context,
                               length: 6,
                               keyboardType: TextInputType.number,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               animationType: AnimationType.fade,
                               autoFocus: false,
                               pinTheme: PinTheme(
                                 shape: PinCodeFieldShape.box,
-                                borderRadius: BorderRadius.circular(6),
-                                fieldHeight: 38,
-                                fieldWidth: 33,
+                                borderRadius: BorderRadius.circular(1),
+                                fieldHeight: size.height * 0.037,
+                                fieldWidth: size.width * 0.07,
                                 activeFillColor: const Color(0xFFB79D6C),
                                 inactiveFillColor: const Color(0xFFB79D6C),
                                 selectedFillColor: const Color(0xFFB79D6C),
                                 inactiveColor: Colors.white,
                                 activeColor: Colors.white,
                                 selectedColor: Colors.blue,
-                                borderWidth: 1,
+                                // borderWidth: 1,
                               ),
                               enableActiveFill: true,
                               onCompleted: (value) {
@@ -91,38 +96,14 @@ class SignInOtpScreen extends StatelessWidget {
                               onChanged: (value) {},
                             ),
                           ),
-                          const SizedBox(width: 5),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MainScreen(),
-                                ),
-                              );
+                          // const SizedBox(width: 5),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
                             },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.002,
-                                vertical: size.height * 0.01,
-                              ),
-                              // backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MainScreen(),
-                                  ),
-                                );
-                              },
-                              child: Image.asset(
-                                'assets/splash_screen/plane.png',
-                              ),
+                            child: Image.asset(
+                              'assets/splash_screen/plane.png',
+                              height: 80,
                             ),
                           ),
                         ],

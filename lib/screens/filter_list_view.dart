@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traveldates/screens/add_trip_detail.dart';
+import 'package:traveldates/screens/trip_detail.dart';
 import 'package:traveldates/widgets/custom_list_card.dart';
 
 
@@ -43,16 +44,29 @@ class FilterListView extends StatelessWidget {
             bottom: size.height * 0.12, // leave space for the button if needed
           ),
           itemCount: trips.length,
-          itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.only(bottom: size.height * 0.025),
-            child: TripListCard(
-              imagePath: trips[index]["image"]!,
-              title: trips[index]["title"]!,
-              date: trips[index]["date"]!,
-              desc: trips[index]["desc"]!,
-              status: trips[index]["status"]!,
-            ),
-          ),
+          itemBuilder: (context, index) {
+            final trip = trips[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TripDetailScreen(),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.025),
+                child: TripListCard(
+                  imagePath: trip["image"]!,
+                  title: trip["title"]!,
+                  date: trip["date"]!,
+                  desc: trip["desc"]!,
+                  status: trip["status"]!,
+                ),
+              ),
+            );
+          },
         ),
         // Plus button
        Positioned(

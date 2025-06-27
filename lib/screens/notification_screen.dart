@@ -16,16 +16,27 @@ class CustomSwitchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile(
-      activeColor: Colors.white,
-      activeTrackColor: const Color(0xFFAF9A73),
-      contentPadding: EdgeInsets.zero,
-      title: Text(
-        title,
-        style: const TextStyle(fontFamily: "Poppins", fontSize: 13),
-      ),
-      value: value,
-      onChanged: onChanged,
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 8,
+            ), // Adjust text size here
+          ),
+        ),
+        Transform.scale(
+          scale: 0.6, // 1.0 is default, <1.0 is smaller, >1.0 is bigger
+          child: Switch(
+            activeColor: Colors.white,
+            activeTrackColor: const Color(0xFFAF9A73),
+            value: value,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -43,7 +54,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   bool accountLogin = true;
   bool notificationAlert = true;
   bool tripCompleted = true;
-  bool showFilter = false; 
+  bool showFilter = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +65,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       body: Row(
         children: [
           // Vertical bar
-          Container(
-            width: size.width * 0.03,
-            color: const Color(0xFF23284E),
-          ),
+          Container(width: size.width * 0.03, color: const Color(0xFF23284E)),
           // Main content
           Expanded(
             child: SafeArea(
@@ -70,7 +78,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   children: [
                     // Main content: ALERTS and notifications
                     Padding(
-                      padding:   EdgeInsets.only(left: size.width*0.07),
+                      padding: EdgeInsets.only(left: size.width * 0.07),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -91,11 +99,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 ),
                               ),
                               Positioned(
-                                top: size.height * 0.04,
+                                top: size.height * 0.02,
                                 left: size.width * 0.18,
                                 right: size.width * 0.18,
                                 child: Image.asset(
                                   'assets/splash_screen/Vector_plane.png',
+                                  fit: BoxFit.fill,
+                                  
                                 ),
                               ),
                             ],
@@ -128,7 +138,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Icon(Icons.menu_open_outlined, size: size.width * 0.08, color: Colors.black87),
+                              child: Icon(
+                                Icons.menu_open_outlined,
+                                size: size.width * 0.08,
+                                color: Colors.black87,
+                              ),
                             ),
                           ),
                           if (showFilter)
@@ -139,46 +153,56 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 borderRadius: BorderRadius.circular(12),
                                 child: Container(
                                   width: size.width * 0.46,
-                                  padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                                  height: size.height * 0.31,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: 16,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                       Text(
+                                      Text(
                                         "Show the Following",
                                         style: TextStyle(
                                           fontFamily: "Poppins",
                                           fontWeight: FontWeight.bold,
-                                          fontSize:  size.width * 0.04,
+                                          fontSize: 8,
                                           color: Colors.black,
                                         ),
                                       ),
-                                      SizedBox(height: size.height * 0.01),
+                                      // SizedBox(height: size.height * 0.01),
                                       CustomSwitchTile(
                                         title: "Upcoming trip",
                                         value: upcomingTrip,
-                                        onChanged: (val) => setState(() => upcomingTrip = val),
+                                        onChanged: (val) =>
+                                            setState(() => upcomingTrip = val),
                                       ),
-                                      const Divider(height: 1, thickness: 1),
+                                      const Divider(height: 0.1, thickness: 1),
                                       CustomSwitchTile(
                                         title: "Account login",
                                         value: accountLogin,
-                                        onChanged: (val) => setState(() => accountLogin = val),
+                                        onChanged: (val) =>
+                                            setState(() => accountLogin = val),
                                       ),
-                                      const Divider(height: 1, thickness: 1),
+                                      const Divider(height: 0.1, thickness: 1),
                                       CustomSwitchTile(
                                         title: "Notification on/off",
                                         value: notificationAlert,
-                                        onChanged: (val) => setState(() => notificationAlert = val),
+                                        onChanged: (val) => setState(
+                                          () => notificationAlert = val,
+                                        ),
                                       ),
-                                      const Divider(height: 1, thickness: 1),
+                                      const Divider(height: 0.1, thickness: 1),
                                       CustomSwitchTile(
                                         title: "Trip Completed",
                                         value: tripCompleted,
-                                        onChanged: (val) => setState(() => tripCompleted = val),
+                                        onChanged: (val) =>
+                                            setState(() => tripCompleted = val),
                                       ),
                                     ],
                                   ),

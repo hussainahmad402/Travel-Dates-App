@@ -30,25 +30,24 @@ class CustomNotificationCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.mail_outline,
-                size: 40,
-                color: const Color(0xFF23284E),
-              ),
-              // SizedBox(width: size.width * 0.03),
-              Text(
-                "Lorem Ipsum is simply dummy text of\n the printing and typesetting industry.",
-                style: TextStyle(
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w400,
-                  fontSize: 11,
-                  color: Colors.black,
+          Padding(
+            padding: EdgeInsets.only(left: size.width*0.04),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset('assets/document_navbar/email_icon.png'),
+                SizedBox(width: size.width * 0.03),
+                Text(
+                  "Lorem Ipsum is simply dummy text of\n the printing and typesetting industry.",
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 11,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Padding(
             padding:   EdgeInsets.only(left:size.width*0.4),

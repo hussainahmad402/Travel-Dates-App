@@ -46,7 +46,8 @@ class SignInScreen extends StatelessWidget {
                     left: size.width * 0.16,
                   ),
                   child: SizedBox(
-                     height: size.height * 0.05,
+                    height: size.height * 0.037, // ≈ 26 pixels
+                    width: size.width * 0.4, // ≈ 104 pixels
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -55,20 +56,22 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         elevation: 0,
-                        padding:  EdgeInsets.symmetric(horizontal:  size.width * 0.024),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.024,
+                        ),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
                             'assets/splash_screen/Google_logo.png',
-                            height: 24,
-                            width: 24,
+                            height: size.height * 0.027, // ≈ 22 pixels
+                            width: size.width * 0.08, // ≈ 30 pixels
                           ),
-                           SizedBox(width: size.width * 0.024 ),
+                          SizedBox(width: size.width * 0.024),
                           const Text(
                             'Continue with Google',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            style: TextStyle(color: Colors.white, fontSize: 9),
                           ),
                         ],
                       ),
@@ -85,7 +88,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   child: Text(
                     "----------------- OR -----------------",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
               ),
@@ -94,18 +97,18 @@ class SignInScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(
                     top: size.height * 0.66,
-                    left: size.width * 0.13,
+                    left: size.width * 0.037,
                   ),
                   child: Row(
                     children: [
                       SizedBox(
-                         height: size.height * 0.05,
-                        width: size.width * 0.55,
+                        height: size.height * 0.04, // ≈ 32 pixels
+                        width: size.width * 0.60, // ≈ 222 pixels
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
                           decoration: InputDecoration(
-                            label: Text("Enter Your Email"),
+                            label: Text("Enter Your Email",style: TextStyle(fontSize: 8),),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -122,7 +125,12 @@ class SignInScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInOtpScreen()));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignInOtpScreen(),
+                            ),
+                          );
                         },
                         child: Image.asset('assets/splash_screen/plane.png'),
                       ),

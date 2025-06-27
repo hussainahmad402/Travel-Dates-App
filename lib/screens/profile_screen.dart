@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                           icon: const Icon(Icons.edit, color: Color(0xFF23284E), size: 24),
                           onPressed: () {
                             // Navigate to edit screen (to be implemented)
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>PersonalEditScreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonalEditScreen()));
                           },
                         ),
                       ],

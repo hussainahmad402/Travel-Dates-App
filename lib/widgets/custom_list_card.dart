@@ -20,10 +20,12 @@ class TripListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      height: size.height * 0.12, // ≈ 74 pixels
+      // width: size.width * 0.717, // ≈ 274 pixels
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.06),
       decoration: BoxDecoration(
         color: const Color(0xFFF7F5F0),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(50),
@@ -32,29 +34,26 @@ class TripListCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          // vertical: size.height * 0.018,
-          // horizontal: size.width * 0.025,
-        ),
-        child: Stack(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Trip image
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    imagePath,
-                    width: size.width * 0.22,
-                    height: size.height * 0.11,
-                    fit: BoxFit.cover,
-                  ),
+      child: Stack(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Trip image
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.asset(
+                  imagePath,
+                  width: size.width * 0.22,
+                  height: size.height * 0.12,
+                  fit: BoxFit.cover,
                 ),
-                SizedBox(width: size.width * 0.04),
-                // Trip details
-                Expanded(
+              ),
+              SizedBox(width: size.width * 0.04),
+              // Trip details
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -63,7 +62,7 @@ class TripListCard extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
-                          fontSize: size.width * 0.04,
+                          fontSize: 10,
                           color: Color(0xFF23284E),
                         ),
                       ),
@@ -73,7 +72,7 @@ class TripListCard extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w700,
-                          fontSize: size.width * 0.024,
+                          fontSize: 6,
                           color: Color(0xFF23284E),
                         ),
                       ),
@@ -85,53 +84,56 @@ class TripListCard extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.025,
+                          fontSize: 6,
                           color: Color(0xFF23284E),
                         ),
                       ),
                     ],
                   ),
                 ),
-                // Status badge (vertical, right side)
-                Padding(
-                  padding: EdgeInsets.only(right: size.width * 0.04),
-                  child: Container(
-                    margin: EdgeInsets.only(left: size.width * 0.09),
-                    child: RotatedBox(
-                      quarterTurns: 3,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: size.height * 0.01,
-                          horizontal: size.width * 0.01,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 129, 105, 105),
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withAlpha(50),
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          status,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: size.width * 0.024,
-                            fontFamily: "Poppins",
+              ),
+              // Status badge (vertical, right side)
+              Padding(
+                padding: EdgeInsets.only(right: size.width * 0.04),
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: size.width * 0.09,
+                    top: size.height * 0.02,
+                  ),
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: Container(
+                      width: size.width * 0.139, // ≈ 52 pixels
+                      height: size.height * 0.019, // ≈ 12 pixels
+                      padding: EdgeInsets.only(top: 2),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 129, 105, 105),
+                        borderRadius: BorderRadius.circular(14),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withAlpha(50),
+                            blurRadius: 2,
+                            offset: const Offset(0, 2),
                           ),
+                        ],
+                      ),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        status,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 6,
+                          fontFamily: "Poppins",
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

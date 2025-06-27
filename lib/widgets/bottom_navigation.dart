@@ -4,17 +4,13 @@ import 'package:traveldates/screens/add_trip_detail.dart';
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
-  final bool showListView;
-  final bool showGridView;
-  final bool isAddTrip;
+  final bool showPlusIcon;
 
   const CustomBottomNavigationBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
-    this.showListView = false,
-    this.showGridView = false,
-    this.isAddTrip = false
+    this.showPlusIcon = false,
   });
 
   @override
@@ -27,12 +23,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
         children: [
           // Curved background
           Positioned.fill(
+            
             child: CustomPaint(
               painter: _NavBarPainter(),
             ),
           ),
-          // Centered "+" button (only for index 2 and not in list/grid view)
-          if (currentIndex == 2 && !showListView && !showGridView || !isAddTrip)
+          // Centered "+" button (conditionally shown)
+          if (showPlusIcon)
             Positioned(
               top: -size.width * 0.07, // Pull up above the curve
               left: size.width * 0.42,
@@ -68,7 +65,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _NavBarIcon(
-                  icon: Icons.notifications,
+                  image: Image.asset('assets/navbar_icons/notification.png'),
                   selected: currentIndex == 0,
                   onTap: () => onTap(0),
                   size: size.width * 0.07,
@@ -76,7 +73,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   selectedColor: const Color(0xFFAF9A73),
                 ),
                 _NavBarIcon(
-                  icon: Icons.settings,
+                  image: Image.asset('assets/navbar_icons/setting.png'),
                   selected: currentIndex == 1,
                   onTap: () => onTap(1),
                   size: size.width * 0.07,
@@ -84,14 +81,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 ),
                 SizedBox(width: size.width * 0.18), // Space for the plus button
                 _NavBarIcon(
-                  icon: Icons.copy,
+                  image: Image.asset('assets/navbar_icons/documents.png'),
                   selected: currentIndex == 3,
                   onTap: () => onTap(3),
                   size: size.width * 0.07,
                   selectedColor: const Color(0xFFAF9A73),
                 ),
                 _NavBarIcon(
-                  icon: Icons.person,
+                  image: Image.asset('assets/navbar_icons/profile.png'),
                   selected: currentIndex == 4,
                   onTap: () => onTap(4),
                   size: size.width * 0.07,
@@ -105,7 +102,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             bottom: size.height * 0.03,
             left: size.width / 2 - size.width * 0.045,
             child: _NavBarIcon(
-              icon: Icons.location_on_outlined,
+              image: Image.asset('assets/navbar_icons/navigation.png'),
               selected: currentIndex == 2,
               onTap: () => onTap(2),
               size: size.width * 0.09,
@@ -119,7 +116,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 }
 
 class _NavBarIcon extends StatelessWidget {
-  final IconData icon;
+  final Image image; // ✅ using Image
   final bool selected;
   final VoidCallback onTap;
   final double size;
@@ -127,7 +124,7 @@ class _NavBarIcon extends StatelessWidget {
   final bool showDot;
 
   const _NavBarIcon({
-    required this.icon,
+    required this.image,
     required this.selected,
     required this.onTap,
     required this.size,
@@ -142,10 +139,15 @@ class _NavBarIcon extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topRight,
         children: [
-          Icon(
-            icon,
-            size: size,
-            color: selected ? selectedColor : Colors.white,
+          SizedBox(
+            width: size,
+            height: size,
+            child: ColorFiltered(
+              colorFilter: selected
+                  ? ColorFilter.mode(selectedColor, BlendMode.srcIn)
+                  : const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              child: image,
+            ),
           ),
           if (showDot)
             Positioned(

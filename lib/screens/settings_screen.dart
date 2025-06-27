@@ -29,6 +29,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: [
                   // Back arrow on its own row
                   GestureDetector(
@@ -40,57 +41,73 @@ class SettingsScreen extends StatelessWidget {
                     },
                     child: Icon(Icons.arrow_back, size: size.width * 0.08),
                   ),
-                  // Title with airplane overlay
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // Large "Setting" title
-                      Text(
-                        "Setting",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 65,
-                          color: const Color(0xFFAF9A73),
-                          letterSpacing: 3,
-                          // height: 1,
-                        ),
-                      ),
-                      // Airplane and dashed line overlay
-                      Positioned(
-                        top: size.height * 0.05,
-                        left: size.width * 0.18,
-                        right: size.width * 0.18,
-                        child: Image.asset(
-                          'assets/splash_screen/Vector_plane.png',
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: size.height * 0.10),
-                  Row(
-                    children: [
-                      CustomSettingsButton(
-                        text: "Delete Account",
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DeleteScreen(),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.07),
+                    child: Column(
+                      children: [
+                    
+                      
+                    // Title with airplane overlay
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Large "Setting" title
+                        Positioned(
+                          child: Text(
+                            
+                            "Setting",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 65,
+                              color: const Color(0xFFAF9A73),
+                              letterSpacing: 2,
+                              // height: 1,
                             ),
-                          );
-                        },
-                        verticalPadding: size.height * 0.02,
-                      ),
-                       SizedBox(width:  size.width * 0.024),
-                      CustomSettingsButton(
-                        text: "Signout",
-                        onPressed: () {
-                          Get.dialog(const SignOutDialog());
-                        },
-                        verticalPadding: size.height * 0.02,
-                      ),
-                    ],
-                  ),
+                          ),
+                        ),
+                        // Airplane and dashed line overlay
+                        Positioned(
+                          // top: size.height * 0.05,
+                          left: size.width * 0.18,
+                          right: size.width * 0.18,
+                          child: Image.asset(
+                            'assets/splash_screen/Vector_plane.png',
+                            fit: BoxFit.fill,
+                            width: size.width * 0.8, // ≈ 243 pixels
+                            height: size.height * 0.07,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: size.height * 0.10),
+                    Row(
+                      children: [
+                        CustomSettingsButton(
+                          text: "Delete Account",
+                    
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DeleteScreen(),
+                              ),
+                            );
+                          },
+                          // verticalPadding: size.height * 0.02,
+                        ),
+                        SizedBox(width: size.width * 0.024),
+                        CustomSettingsButton(
+                          text: "Signout",
+                          onPressed: () {
+                            Get.dialog(const SignOutDialog());
+                          },
+                          // verticalPadding: size.height * 0.02,
+                        ),
+                      ],
+                    ),
+                                    ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -105,13 +122,13 @@ class SettingsScreen extends StatelessWidget {
 class CustomSettingsButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  final double verticalPadding;
+  // final double verticalPadding;
 
   const CustomSettingsButton({
     super.key,
     required this.text,
     required this.onPressed,
-    required this.verticalPadding,
+    // required this.verticalPadding,
   });
 
   @override
@@ -119,22 +136,24 @@ class CustomSettingsButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        minimumSize: Size(
+          size.width * 0.30,
+          size.height * 0.048, // ≈ 39 pixels
+        ), // ≈ 115 pixels),
         backgroundColor: const Color(0xFF1A2038),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         padding: EdgeInsets.symmetric(
-          vertical: verticalPadding,
+          // vertical: verticalPadding,
         ),
         elevation: 0,
       ),
       onPressed: onPressed,
       child: Text(
         text,
-        style:  TextStyle(
+        style: TextStyle(
           fontFamily: "Poppins",
-          fontWeight: FontWeight.w500,
-          fontSize:  size.width * 0.035,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
           color: Colors.white,
         ),
       ),
@@ -150,12 +169,12 @@ class SignOutDialog extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Dialog(
       backgroundColor: Colors.white,
-      insetPadding: EdgeInsets.symmetric(horizontal:  size.width * 0.024),
+      insetPadding: EdgeInsets.symmetric(horizontal: size.width * 0.024),
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
-        width:  size.width * 0.7,
-        padding: EdgeInsets.all( size.width * 0.03),
+        width: size.width * 0.7,
+        padding: EdgeInsets.all(size.width * 0.03),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black12),
           borderRadius: BorderRadius.circular(8),
@@ -164,24 +183,24 @@ class SignOutDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min, // <-- Important!
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(
+            Text(
               "SignOut",
               style: TextStyle(
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w600,
-                fontSize:  size.width * 0.06,
+                fontSize: size.width * 0.06,
               ),
             ),
             SizedBox(height: size.height * 0.008),
-             Text(
+            Text(
               "Do you want to signout from Travel Dates?",
               style: TextStyle(
                 fontFamily: "Poppins",
-                fontSize:  size.width * 0.035,
+                fontSize: size.width * 0.035,
                 color: Colors.black87,
               ),
             ),
-             SizedBox(height: size.height * 0.003), // Instead of Spacer
+            SizedBox(height: size.height * 0.003), // Instead of Spacer
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

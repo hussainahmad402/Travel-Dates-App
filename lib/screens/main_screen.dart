@@ -48,6 +48,7 @@ class _MainScreenState extends State<MainScreen> {
         return false; // Prevent default back action (app close)
       },
       child: Scaffold(
+        extendBody: true,
         body: _currentIndex == 2
             ? TripsScreen(
                 showListView: showListView,
@@ -84,11 +85,9 @@ class _MainScreenState extends State<MainScreen> {
           onTap: (index) {
             setState(() {
               _currentIndex = index;
-              if (index != 2) showListView = false;
             });
           },
-          showListView: showListView,
-          showGridView: showGridView,
+          showPlusIcon: _currentIndex == 2 && !showListView && !showGridView,
         ),
       ),
     );
