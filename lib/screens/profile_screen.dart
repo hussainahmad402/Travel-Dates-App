@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:traveldates/screens/main_screen.dart';
 import 'package:traveldates/screens/personal_edit.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+   final box = GetStorage();
+
+  String _firstName = '';
+  String _lastName = '';
+  String _email = '';
+  String _city = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() {
+    setState(() {
+      _firstName = box.read('first_name') ?? 'N/A';
+      _lastName = box.read('last_name') ?? '';
+      _email = box.read('email') ?? 'N/A';
+      _city = box.read('city') ?? 'N/A';
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -77,8 +104,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox( height: size.width * 0.019),
-                    const Text(
-                      "John Smith",
+                     Text(
+                      "$_firstName $_lastName",
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 18,
@@ -97,8 +124,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                      SizedBox(height:  size.width * 0.024),
-                    const Text(
-                      "Los Angeles, California",
+                     Text(
+                      _city,
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 18,
@@ -117,8 +144,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                      SizedBox(height:  size.width * 0.024),
-                    const Text(
-                      "abcd1234@gmail.com",
+                    Text(
+                      _email,
                       style: TextStyle(
                         fontFamily: "Poppins",
                         fontSize: 18,

@@ -38,58 +38,59 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        // Replace this with your desired navigation logic
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MainScreen()),
-        );
-        return false; // Prevent default back action (app close)
-      },
-      child: Scaffold(
-        extendBody: true,
-        body: _currentIndex == 2
-            ? TripsScreen(
-                showListView: showListView,
-                showGridView: showGridView,
-                onToggleList: () {
-                  setState(() {
-                    showListView = !showListView;
-                    if (showListView) showGridView = false;
-                  });
-                },
-                onToggleGrid: () {
-                  setState(() {
-                    showGridView = !showGridView;
-                    if (showGridView) showListView = false;
-                  });
-                },
-                // Pass filter state and callbacks
-                isUpcoming: isUpcoming,
-                isPast: isPast,
-                onUpcomingChanged: (val) {
-                  setState(() {
-                    isUpcoming = val;
-                  });
-                },
-                onPastChanged: (val) {
-                  setState(() {
-                    isPast = val;
-                  });
-                },
-              )
-            : _screens[_currentIndex < 2 ? _currentIndex : _currentIndex - 1],
-        bottomNavigationBar: CustomBottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          showPlusIcon: _currentIndex == 2 && !showListView && !showGridView,
-        ),
+Widget build(BuildContext context) {
+  return WillPopScope(
+    onWillPop: () async {
+      if (_currentIndex != 2) {
+        setState(() {
+          _currentIndex = 2;
+        });
+        return false;
+      }
+      return true;
+    },
+    child: Scaffold(
+      extendBody: true,
+      body: _currentIndex == 2
+          ? TripsScreen(
+              showListView: showListView,
+              showGridView: showGridView,
+              onToggleList: () {
+                setState(() {
+                  showListView = !showListView;
+                  if (showListView) showGridView = false;
+                });
+              },
+              onToggleGrid: () {
+                setState(() {
+                  showGridView = !showGridView;
+                  if (showGridView) showListView = false;
+                });
+              },
+              isUpcoming: isUpcoming,
+              isPast: isPast,
+              onUpcomingChanged: (val) {
+                setState(() {
+                  isUpcoming = val;
+                });
+              },
+              onPastChanged: (val) {
+                setState(() {
+                  isPast = val;
+                });
+              },
+            )
+          : _screens[_currentIndex < 2 ? _currentIndex : _currentIndex - 1],
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        showPlusIcon: _currentIndex == 2 && !showListView && !showGridView,
       ),
-    );
-  }
+    ),
+  );
+}
 }
