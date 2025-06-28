@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:traveldates/screens/profile_screen.dart';
+import 'package:traveldates/widgets/bottom_navigation.dart';
 import 'package:traveldates/widgets/custom_textfields.dart';
 
 class PersonalEditScreen extends StatefulWidget {
@@ -65,6 +66,7 @@ class _PersonalEditScreenState extends State<PersonalEditScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      extendBody: true,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Row(
@@ -175,6 +177,14 @@ class _PersonalEditScreenState extends State<PersonalEditScreen> {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 2, // highlight the Trips tab
+        onTap: (index) {
+          Navigator.of(context).pop(); // or use your navigation logic
+        },
+        // showListView: false,
+        // showGridView: false,
       ),
     );
   }

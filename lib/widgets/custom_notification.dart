@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomNotificationCard extends StatelessWidget {
   final String time;
-  const CustomNotificationCard({super.key, required this.time});
+  final Color backgroundcolor;
+  const CustomNotificationCard({super.key, required this.time,this.backgroundcolor=Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,8 @@ class CustomNotificationCard extends StatelessWidget {
       height: size.height  *0.12, // ≈ 82 pixels
       width: size.width * (290 / size.width), // ≈ 290 pixels
       decoration: BoxDecoration(
-        color: Colors.white,
+        
+        color: backgroundcolor,
         borderRadius: BorderRadius.circular(50),
         boxShadow: [
           BoxShadow(

@@ -9,7 +9,7 @@ import 'package:traveldates/screens/filter_list_view.dart';
 import 'package:traveldates/widgets/custom_grid_card.dart';
 import 'package:traveldates/widgets/custom_maptrip_card.dart';
 
-class TripsScreen extends StatelessWidget {
+class TripsScreen extends StatefulWidget {
   final bool showListView;
   final bool showGridView;
   final VoidCallback onToggleList;
@@ -18,8 +18,13 @@ class TripsScreen extends StatelessWidget {
   final bool isPast;
   final ValueChanged<bool> onUpcomingChanged;
   final ValueChanged<bool> onPastChanged;
+  final List<LatLng> markerLocations = [
+    LatLng(59.3293, 18.0686),
+    LatLng(59.3393, 18.0786),
+    LatLng(59.3193, 18.0886),
+  ];
 
-  const TripsScreen({
+  TripsScreen({
     super.key,
     this.showListView = false,
     this.showGridView = false,
@@ -32,18 +37,64 @@ class TripsScreen extends StatelessWidget {
   });
 
   @override
+  State<TripsScreen> createState() => _TripsScreenState();
+}
+
+class _TripsScreenState extends State<TripsScreen> {
+  late BitmapDescriptor customIcon;
+  final List<LatLng> markerLocations = [
+    LatLng(59.3293, 18.0686), // Central Stockholm
+    LatLng(59.3305, 18.0708),
+    LatLng(59.3317, 18.0724),
+    LatLng(59.3270, 18.0672),
+    LatLng(59.3260, 18.0690),
+    LatLng(59.3285, 18.0655),
+    LatLng(59.3322, 18.0680),
+    LatLng(59.3299, 18.0715),
+    LatLng(59.3279, 18.0633),
+    LatLng(59.3256, 18.0668),
+    LatLng(59.3300, 18.0622), //
+  ];
+
+  Set<Marker> _markers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCustomMarker();
+  }
+
+  void _loadCustomMarker() async {
+    customIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(),
+      'assets/document_navbar/pin_point_map.png',
+    );
+
+    Set<Marker> newMarkers = {};
+
+    for (int i = 0; i < markerLocations.length; i++) {
+      newMarkers.add(
+        Marker(
+          markerId: MarkerId('marker_$i'),
+          position: markerLocations[i],
+          icon: customIcon,
+          infoWindow: InfoWindow(title: 'Location ${i + 1}'),
+        ),
+      );
+    }
+
+    setState(() {
+      _markers = newMarkers;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Stack(
       children: [
-        Positioned(
-          left: 0,
-          top: 0,
-          width: size.width * 0.025,
-          height: size.height,
-          child: Container(color: const Color(0xFF23284E)),
-        ),
+       
         Stack(
           alignment: Alignment.center,
 
@@ -57,7 +108,7 @@ class TripsScreen extends StatelessWidget {
                 "TRIPS",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w400,
-                  fontSize: 85,
+                  fontSize: 115,
                   color: const Color(0xFFAF9A73),
                   height: 1,
                 ),
@@ -83,14 +134,14 @@ class TripsScreen extends StatelessWidget {
           right: 0,
           child: FilterBar(
             size: size,
-            onListTap: onToggleList,
-            onGridTap: onToggleGrid,
-            showListView: showListView,
-            showGridView: showGridView,
-            isUpcoming: isUpcoming,
-            isPast: isPast,
-            onUpcomingChanged: onUpcomingChanged,
-            onPastChanged: onPastChanged,
+            onListTap: widget.onToggleList,
+            onGridTap: widget.onToggleGrid,
+            showListView: widget.showListView,
+            showGridView: widget.showGridView,
+            isUpcoming: widget.isUpcoming,
+            isPast: widget.isPast,
+            onUpcomingChanged: widget.onUpcomingChanged,
+            onPastChanged: widget.onPastChanged,
           ),
         ),
         Positioned(
@@ -98,16 +149,17 @@ class TripsScreen extends StatelessWidget {
           left: size.width * 0.025,
           width: size.width * 0.97,
           height: size.height * 0.65,
-          child: showListView
+          child: widget.showListView
               ? const FilterListView()
-              : showGridView
+              : widget.showGridView
               ? const FilterGridView()
               : ClipRRect(
                   borderRadius: BorderRadius.circular(18),
                   child: GoogleMap(
+                    markers: _markers,
                     initialCameraPosition: const CameraPosition(
                       target: LatLng(59.3293, 18.0686),
-                      zoom: 12,
+                      zoom: 16,
                     ),
                     myLocationEnabled: false,
                     zoomControlsEnabled: false,
@@ -115,10 +167,10 @@ class TripsScreen extends StatelessWidget {
                 ),
         ),
         // Only show MapTripCards if neither list nor grid view is active
-        if (!showListView && !showGridView && isPast)
+        if (!widget.showListView && !widget.showGridView && widget.isPast)
           Positioned(
-            left: size.width * 0.3,
-            top: size.width * 1.3,
+            left: size.width * 0.4,
+            top: size.width * 0.9,
             child: TripGridCard(
               imagePath: 'assets/document_navbar/1.png',
               title: "Los Angeles to Paris",
@@ -129,10 +181,10 @@ class TripsScreen extends StatelessWidget {
               status: "Past",
             ),
           ),
-        if (!showListView && !showGridView && isUpcoming)
+        if (!widget.showListView && !widget.showGridView && widget.isUpcoming)
           Positioned(
-            left: size.width * 0.2,
-            top: size.width * 0.9,
+            left: size.width * 0.3,
+            top: size.width * 1.4,
             child: TripGridCard(
               imagePath: 'assets/document_navbar/2.png',
               title: "Los Angeles to Paris",
@@ -143,6 +195,13 @@ class TripsScreen extends StatelessWidget {
               status: "Upcoming",
             ),
           ),
+          Positioned(
+          left: 0,
+          top: 0,
+          width: size.width * 0.03,
+          height: size.height,
+          child: Container(color: const Color(0xFF23284E)),
+        ),
       ],
     );
   }

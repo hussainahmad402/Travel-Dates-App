@@ -71,6 +71,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
                     SizedBox(height: size.height * 0.025),
                     // OTP Field
                     TextField(
+                      keyboardType: TextInputType.number,
                       controller: otpController,
                       obscureText: isObscure,
                       decoration: InputDecoration(

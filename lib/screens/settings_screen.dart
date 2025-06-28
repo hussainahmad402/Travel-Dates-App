@@ -11,6 +11,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Row(
         children: [
@@ -58,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                             "Setting",
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w400,
-                              fontSize: 65,
+                              fontSize: 85,
                               color: const Color(0xFFAF9A73),
                               letterSpacing: 2,
                               // height: 1,
@@ -73,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                           child: Image.asset(
                             'assets/splash_screen/Vector_plane.png',
                             fit: BoxFit.fill,
-                            width: size.width * 0.8, // ≈ 243 pixels
+                            width: size.width * 0.9, // ≈ 243 pixels
                             height: size.height * 0.07,
                           ),
                         ),

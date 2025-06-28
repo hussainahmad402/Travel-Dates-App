@@ -24,7 +24,7 @@ class TripGridCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.14, // ≈ 61 pixels
+      height: size.height * 0.11, // ≈ 61 pixels
       width: size.width * 0.33,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),

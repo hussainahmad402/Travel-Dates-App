@@ -7,6 +7,7 @@ import 'package:traveldates/widgets/bottom_navigation.dart'; // Import your cust
 // import 'package:traveldates/widgets/location_picker.dart'; // Import the location picker widget
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // Import LatLng
 import 'package:file_picker/file_picker.dart'; // Import FilePicker
+import 'package:google_fonts/google_fonts.dart';
 
 class AddTripDetailScreen extends StatefulWidget {
   const AddTripDetailScreen({super.key});
@@ -98,13 +99,22 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBody: true,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
+      body: Stack(
+        children:[
+          Positioned(
+          left: 0,
+          top: 0,
+          width: size.width * 0.03,
+          height: size.height,
+          child: Container(color: const Color(0xFF23284E)),
+        ),
+           Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.06,
-            vertical: size.height * 0.02,
+            horizontal: size.width * 0.07,
+            vertical: size.height * 0.06,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +155,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                                 picked.latitude,
                                 picked.longitude,
                               );
-
+        
                           if (placemarks.isNotEmpty) {
                             Placemark place = placemarks.first;
                             final fullAddress =
@@ -209,7 +219,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                                 picked.latitude,
                                 picked.longitude,
                               );
-
+        
                           if (placemarks.isNotEmpty) {
                             Placemark place = placemarks.first;
                             final fullAddress =
@@ -325,18 +335,14 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                               // Handle the picked file here
                             }
                           },
-                          child: Icon(
-                            Icons.cloud_upload,
-                            color: Color(0xFF23284E),
-                            size: size.width * 0.08, // responsive size
-                          ),
+                          child:Image.asset('assets/document_navbar/upload_icon.png',)
                         ),
-
+        
                         SizedBox(height: size.height * 0.018),
                         const Text(
                           "Add Images:",
                           style: TextStyle(
-                            fontFamily: "Poppins",
+                            fontFamily: "Roboto",
                             fontWeight: FontWeight.w400,
                             fontSize: 15,
                           ),
@@ -352,11 +358,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                               // You can save or display the image as needed
                             }
                           },
-                          child: Icon(
-                            Icons.cloud_upload,
-                            color: Color(0xFF23284E),
-                            size: size.width * 0.08,
-                          ),
+                          child: Image.asset('assets/document_navbar/upload_icon.png',)
                         ),
                       ],
                     ),
@@ -392,7 +394,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                         onPressed: () {
                           final box = GetStorage();
                           final previousDraft = box.read("draftTrip") ?? {};
-
+        
                           final draftTrip = {
                             "origin":
                                 _originText ?? previousDraft["origin"] ?? "",
@@ -429,9 +431,9 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                                 ? _longDescController.text
                                 : previousDraft["long_description"] ?? "",
                           };
-
+        
                           box.write("draftTrip", draftTrip);
-
+        
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               
@@ -439,7 +441,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
                             ),
                           );
                         },
-
+        
                         child: const Text(
                           "Save as draft",
                           style: TextStyle(
@@ -456,7 +458,7 @@ class _AddTripDetailScreenState extends State<AddTripDetailScreen> {
               ),
             ],
           ),
-        ),
+        ),]
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: 2, // highlight the Trips tab

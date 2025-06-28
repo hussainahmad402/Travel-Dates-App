@@ -23,7 +23,7 @@ class CustomSwitchTile extends StatelessWidget {
             title,
             style: const TextStyle(
               fontFamily: "Poppins",
-              fontSize: 8,
+              fontSize: 10,
             ), // Adjust text size here
           ),
         ),
@@ -153,7 +153,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 borderRadius: BorderRadius.circular(12),
                                 child: Container(
                                   width: size.width * 0.46,
-                                  height: size.height * 0.31,
+                                  height: size.height * 0.25,
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 10,
                                     horizontal: 16,
@@ -171,7 +171,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         style: TextStyle(
                                           fontFamily: "Poppins",
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 8,
+                                          fontSize: 12,
                                           color: Colors.black,
                                         ),
                                       ),
