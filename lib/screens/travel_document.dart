@@ -68,8 +68,8 @@ class TravelDocumentScreen extends StatelessWidget {
                                   "Travel\nDocuments",
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 45,
+                                  //  fontWeight: FontWeight.w400,
+                                    fontSize: 55,
                                     color: const Color(0xFFAF9A73),
                                     letterSpacing: 2,
                                     height: 0.97

@@ -53,29 +53,22 @@ class SettingsScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       children: [
                         // Large "Setting" title
-                        Positioned(
-                          child: Text(
-                            
-                            "Setting",
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 85,
-                              color: const Color(0xFFAF9A73),
-                              letterSpacing: 2,
-                              // height: 1,
-                            ),
+                        Text(
+                          
+                          "Setting",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 85,
+                            color: const Color(0xFFAF9A73),
+                            letterSpacing: 2,
+                            // height: 1,
                           ),
                         ),
                         // Airplane and dashed line overlay
                         Positioned(
-                          // top: size.height * 0.05,
-                          left: size.width * 0.18,
-                          right: size.width * 0.18,
+                         left: 25,
                           child: Image.asset(
                             'assets/splash_screen/Vector_plane.png',
-                            fit: BoxFit.fill,
-                            width: size.width * 0.9, // ≈ 243 pixels
-                            height: size.height * 0.07,
                           ),
                         ),
                       ],
