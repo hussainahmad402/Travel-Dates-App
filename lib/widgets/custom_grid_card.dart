@@ -60,9 +60,9 @@ class TripGridCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.01,
-                vertical: size.width * 0.04,
+              padding: EdgeInsets.only(
+                left: size.width * 0.01,
+                top: size.width * 0.02,
               ),
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.center, // Center vertically
@@ -71,15 +71,15 @@ class TripGridCard extends StatelessWidget {
                   // Top badges
                   Row(
                     mainAxisAlignment: MainAxisAlignment
-                        .spaceEvenly, // Center badges horizontally
+                        .center, // Center badges horizontally
                     children: [
                       if (badge1.isNotEmpty)
                         Container(
                           width: size.width * 0.118, // ≈ 45 pixels
                           height: size.height * 0.015, // ≈ 9 pixels
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.02,
-                            vertical: size.height * 0.002,
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.01,
+                            top: size.height * 0.004,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.white.withAlpha(200),
@@ -95,17 +95,17 @@ class TripGridCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (badge2.isNotEmpty)
+                      // if (badge2.isNotEmpty)
                         SizedBox(
-                          width: size.width * 0.01,
+                          width: size.width * 0.02,
                         ), // Space between badges
                       if (badge2.isNotEmpty)
                         Container(
                           width: size.width * 0.118,
                           height: size.height * 0.015,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.02,
-                            vertical: size.height * 0.002,
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.01,
+                            top: size.height * 0.004,
                           ),
                           decoration: BoxDecoration(
                             color: Color(0xffAF9A73),

@@ -95,38 +95,31 @@ class _TripsScreenState extends State<TripsScreen> {
     return Stack(
       children: [
        
-        Stack(
-          alignment: Alignment.center,
-
-          children: [
-            // TRIPS text
-            Positioned(
-              top: size.height * 0.08,
-              left: size.width * 0.2,
-              right: 0,
-              child: Text(
-                "TRIPS",
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 115,
-                  color: const Color(0xFFAF9A73),
-                  height: 1,
-                ),
-              ),
+        Positioned(
+          top: size.height * 0.08,
+          left: size.width * 0.2,
+          right: 0,
+          child: Text(
+            "TRIPS",
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 115,
+              color: const Color(0xFFAF9A73),
+              height: 1,
             ),
-            // Vector plane overlay
-            Positioned(
-              top: size.height * 0.1,
-              left: size.width * 0.1,
-              right: 0,
-              child: Image.asset(
-                'assets/splash_screen/Vector_plane.png',
-                fit: BoxFit.contain,
-                width: size.width * 0.63, // ≈ 243 pixels
-                height: size.height * 0.07,
-              ),
-            ),
-          ],
+          ),
+        ),
+        // Vector plane overlay
+        Positioned(
+          top: size.height * 0.1,
+          left: size.width * 0.1,
+          right: 0,
+          child: Image.asset(
+            'assets/splash_screen/Vector_plane.png',
+            fit: BoxFit.contain,
+            width: size.width * 0.63, // ≈ 243 pixels
+            height: size.height * 0.07,
+          ),
         ),
         Positioned(
           top: size.height * 0.23,
@@ -172,7 +165,7 @@ class _TripsScreenState extends State<TripsScreen> {
             left: size.width * 0.4,
             top: size.width * 0.9,
             child: TripGridCard(
-              imagePath: 'assets/document_navbar/1.png',
+              imagePath: 'assets/document_navbar/4.png',
               title: "Los Angeles to Paris",
               date: "MON, 01 NOV 2021 – SAT, 27 NOV 2021",
               desc: "Lorem ipsum dolor sit amet\n consectetur...",
@@ -186,9 +179,9 @@ class _TripsScreenState extends State<TripsScreen> {
             left: size.width * 0.3,
             top: size.width * 1.4,
             child: TripGridCard(
-              imagePath: 'assets/document_navbar/2.png',
+              imagePath: 'assets/document_navbar/4.png',
               title: "Los Angeles to Paris",
-              date: "FRI, 03 DEC 2021 – TUE, 04 DEC 2021",
+              date: "FRI, 03 Dec 2021- TUE,04 DEC 2021",
               desc: "Lorem ipsum dolor sit amet\n consectetur...",
               badge1: "32 days Trip",
               badge2: "In 5 Days",

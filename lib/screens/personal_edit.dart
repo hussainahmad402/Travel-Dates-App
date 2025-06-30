@@ -69,7 +69,7 @@ class _PersonalEditScreenState extends State<PersonalEditScreen> {
       extendBody: true,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: Row(
+      body: Stack(
         children: [
           // Vertical bar
           Container(
@@ -78,101 +78,98 @@ class _PersonalEditScreenState extends State<PersonalEditScreen> {
             color: const Color(0xFF23284E),
           ),
           // Main content
-          Expanded(
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.07,
-                  vertical: size.height * 0.03,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Back arrow
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProfileScreen(),
-                          ),
-                        );
-                      },
-                      child: Icon(Icons.arrow_back, size: size.width * 0.08),
-                    ),
-                    SizedBox(height: size.width * 0.09),
-                    // Title
-                    const Text(
-                      "Edit",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w600,
-                        fontSize: 32,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.03),
-                    // CustomTextFormField widgets
-                    CustomTextFormField(
-                      label: "First Name: *",
-                      controller: _firstNameController,
-                    ),
-                    SizedBox(height: size.height * 0.015),
-                    CustomTextFormField(
-                      label: "Last Name:*",
-                      controller: _lastNameController,
-                    ),
-                    SizedBox(height: size.height * 0.015),
-                    CustomTextFormField(
-                      label: "Email: *",
-                      controller: _emailController,
-                    ),
-                    SizedBox(height: size.height * 0.015),
-                    CustomTextFormField(
-                      label: "Home, City: *",
-                      controller: _cityController,
-                    ),
-                    SizedBox(height: size.height * 0.015),
-                    CustomTextFormField(
-                      label: "add secondary email: (optional)",
-                      controller: _secondaryEmailController,
-                    ),
-                    SizedBox(height: size.height * 0.015),
-                    CustomTextFormField(
-                      label: "company name:",
-                      controller: _companyNameController,
-                    ),
-                    SizedBox(height: size.height * 0.04),
-                    // Save button
-                    Align(
-                      alignment: Alignment.bottomRight,
-
-                      child: ElevatedButton(
-                        onPressed: _saveData,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFAF9A73),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.06,
-                            vertical: size.height * 0.01,
-                          ),
-                          elevation: 0,
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.07,
+                vertical: size.height * 0.03,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Back arrow
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileScreen(),
                         ),
-                        child: const Text(
-                          "Save",
-                          style: TextStyle(
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
+                      );
+                    },
+                    child: Icon(Icons.arrow_back, size: size.width * 0.08),
+                  ),
+                  SizedBox(height: size.width * 0.04),
+                  // Title
+                  const Text(
+                    "Edit",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                      fontSize: 32,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.03),
+                  // CustomTextFormField widgets
+                  CustomTextFormField(
+                    label: "First Name: *",
+                    controller: _firstNameController,
+                  ),
+                  SizedBox(height: size.height * 0.015),
+                  CustomTextFormField(
+                    label: "Last Name:*",
+                    controller: _lastNameController,
+                  ),
+                  SizedBox(height: size.height * 0.015),
+                  CustomTextFormField(
+                    label: "Email: *",
+                    controller: _emailController,
+                  ),
+                  SizedBox(height: size.height * 0.015),
+                  CustomTextFormField(
+                    label: "Home, City: *",
+                    controller: _cityController,
+                  ),
+                  SizedBox(height: size.height * 0.015),
+                  CustomTextFormField(
+                    label: "add secondary email: (optional)",
+                    controller: _secondaryEmailController,
+                  ),
+                  SizedBox(height: size.height * 0.015),
+                  CustomTextFormField(
+                    label: "company name:",
+                    controller: _companyNameController,
+                  ),
+                  SizedBox(height: size.height * 0.04),
+                  // Save button
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      onPressed: _saveData,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFAF9A73),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.06,
+                          vertical: size.height * 0.01,
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        "Save",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

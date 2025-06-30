@@ -10,137 +10,123 @@ class SignInScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: size.height, // Maintain full height, helps Stack layout
-          child: Stack(
-            children: [
-              // Background image (fills the screen)
-              Positioned.fill(
-                child: Image.asset(
-                  'assets/splash_screen/splash_screen.png',
-                  fit: BoxFit.fill,
-                ),
+      // resizeToAvoidBottomInset: true,
+      body: Stack(
+        children: [
+          // Background image (fills the screen)
+          SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Image.asset(
+              'assets/splash_screen/splash_screen.png',
+              fit: BoxFit.fill,
+            ),
+          ),
+          // Logo image (center left, above background)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: size.width * 0.06,
+                bottom: size.height * 0.25,
               ),
-              // Logo image (center left, above background)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: size.width * 0.06,
-                    bottom: size.height * 0.25,
-                  ),
-                  child: Image.asset(
-                    'assets/splash_screen/splash_screen_laguage.png',
-                    width: size.width * 0.38,
-                    fit: BoxFit.contain,
-                  ),
-                ),
+              child: Image.asset(
+                'assets/splash_screen/splash_screen_laguage.png',
+                width: size.width * 0.38,
+                fit: BoxFit.contain,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.4,
-                    left: size.width * 0.16,
+            ),
+          ),
+          Positioned(
+            bottom: size.height * 0.25,
+            left: size.width * 0.17,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF292C47),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(22),
+                ),
+                elevation: 0,
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.024),
+              ),
+              child: Row(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/splash_screen/Google_logo.png',
+                    height: size.height * 0.025, // ≈ 22 pixels
+                    // width: size.width * 0.08, // ≈ 30 pixels
                   ),
-                  child: SizedBox(
-                    height: size.height * 0.037, // ≈ 26 pixels
-                    width: size.width * 0.4, // ≈ 104 pixels
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF292C47),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 0,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.024,
+                  SizedBox(width: size.width * 0.029),
+                  const Text(
+                    'Continue with Google',
+                    style: TextStyle(color: Colors.white, fontSize: 9),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: size.height * 0.21,
+            left: size.width * 0.05,
+            child: Text(
+              "---------------------- OR ----------------------",
+              style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+            ),
+          ),
+          Positioned(
+            bottom: size.height * 0.11,
+            left: size.width * 0.058,
+            child: Row(
+              children: [
+                SizedBox(
+                  height: size.height * 0.04, // ≈ 32 pixels
+                  width: size.width * 0.60, // ≈ 222 pixels
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      label: Text(
+                        "Enter Your Email",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.black.withAlpha(100),
                         ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'assets/splash_screen/Google_logo.png',
-                            height: size.height * 0.027, // ≈ 22 pixels
-                            width: size.width * 0.08, // ≈ 30 pixels
-                          ),
-                          SizedBox(width: size.width * 0.024),
-                          const Text(
-                            'Continue with Google',
-                            style: TextStyle(color: Colors.white, fontSize: 9),
-                          ),
-                        ],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      // isDense: true,
+                      // contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), // Reduce padding
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.53,
-                    left: size.width * 0.13,
-                  ),
-                  child: Text(
-                    "----------------- OR -----------------",
-                    style: TextStyle(fontSize: 12),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignInOtpScreen(),
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/splash_screen/plane.png',
+                    // height: 90,
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.66,
-                    left: size.width * 0.037,
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: size.height * 0.04, // ≈ 32 pixels
-                        width: size.width * 0.60, // ≈ 222 pixels
-                        child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            label: Text("Enter Your Email",style: TextStyle(fontSize: 8),),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.transparent),
-                            ),
-                            fillColor: Colors.white,
-                            filled: true,
-                            // isDense: true,
-                            // contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), // Reduce padding
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignInOtpScreen(),
-                            ),
-                          );
-                        },
-                        child: Image.asset('assets/splash_screen/plane.png'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+       
+       ],
       ),
     );
   }

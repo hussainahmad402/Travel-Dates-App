@@ -13,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: Row(
+      body: Stack(
         children: [
           // Vertical bar
           Container(
@@ -22,85 +22,82 @@ class SettingsScreen extends StatelessWidget {
             color: const Color(0xFF23284E),
           ),
           // Main content
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.07,
-                vertical: size.height * 0.03,
-              ),
+
+          Positioned(
+            top: size.height*0.04,
+            left: size.width*0.07,
+            child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainScreen()),
+                    );
+                  },
+                  child: Icon(Icons.arrow_back, size: size.width * 0.08),
+                ),),
+          Padding(
+            padding: EdgeInsets.only(
+              left: size.width * 0.15,
+              top: size.height * 0.08,
+            ),
+            child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
+                        
                 children: [
                   // Back arrow on its own row
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => MainScreen()),
-                      );
-                    },
-                    child: Icon(Icons.arrow_back, size: size.width * 0.08),
+                  
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      // Large "Setting" title
+                      Text(
+                        
+                        "Setting",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 95,
+                          color: const Color(0xFFAF9A73),
+                          letterSpacing: 2,
+                          // height: 1,
+                        ),
+                      ),
+                      // Airplane and dashed line overlay
+                      Positioned(
+                       left: 25,
+                        child: Image.asset(
+                          'assets/splash_screen/Vector_plane.png',
+                        ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.07),
-                    child: Column(
-                      children: [
-                    
-                      
-                    // Title with airplane overlay
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        // Large "Setting" title
-                        Text(
-                          
-                          "Setting",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 85,
-                            color: const Color(0xFFAF9A73),
-                            letterSpacing: 2,
-                            // height: 1,
-                          ),
-                        ),
-                        // Airplane and dashed line overlay
-                        Positioned(
-                         left: 25,
-                          child: Image.asset(
-                            'assets/splash_screen/Vector_plane.png',
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: size.height * 0.10),
-                    Row(
-                      children: [
-                        CustomSettingsButton(
-                          text: "Delete Account",
-                    
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DeleteScreen(),
-                              ),
-                            );
-                          },
-                          // verticalPadding: size.height * 0.02,
-                        ),
-                        SizedBox(width: size.width * 0.024),
-                        CustomSettingsButton(
-                          text: "Signout",
-                          onPressed: () {
-                            Get.dialog(const SignOutDialog());
-                          },
-                          // verticalPadding: size.height * 0.02,
-                        ),
-                      ],
-                    ),
-                                    ],
-                    ),
+                  SizedBox(height: size.height * 0.10),
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomSettingsButton(
+                        text: "Delete Account",
+                  
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DeleteScreen(),
+                            ),
+                          );
+                        },
+                        // verticalPadding: size.height * 0.02,
+                      ),
+                      SizedBox(width: size.width * 0.024),
+                      CustomSettingsButton(
+                        text: "Signout",
+                        onPressed: () {
+                          Get.dialog(const SignOutDialog());
+                        },
+                        // verticalPadding: size.height * 0.02,
+                      ),
+                    ],
                   )
                 ],
               ),

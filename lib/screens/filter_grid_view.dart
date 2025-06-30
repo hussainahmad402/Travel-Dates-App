@@ -57,15 +57,16 @@ class FilterGridView extends StatelessWidget {
             GridView.builder(
               padding: EdgeInsets.only(
                 top: height * 0.02,
-                bottom: height * 0.14,
+                // bottom: height * 0.14,
                 left: width * 0.03,
                 right: width * 0.03,
               ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: width * 0.02,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                // crossAxisCount: 3,
+                maxCrossAxisExtent: size.width*0.33,
+                mainAxisSpacing: width * 0.05,
                 crossAxisSpacing: width * 0.02,
-                childAspectRatio: 1, // Keep aspect ratio consistent
+                childAspectRatio: 1.3, // Keep aspect ratio consistent
               ),
               itemCount: 9,
               itemBuilder: (context, index) {
